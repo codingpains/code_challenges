@@ -20,7 +20,7 @@ int hash(char *val)
 int main(void)
 {
     FILE * file;
-    char file_name[128];
+    char file_name[MAX];
     char * line = NULL;
     char * cmd;
     char * val;
@@ -34,7 +34,7 @@ int main(void)
 
     printf("Provide input file: ");
     
-    fgets(file_name, 128, stdin);
+    fgets(file_name, MAX, stdin);
     strtok(file_name, "\n");
 
     file = fopen(file_name, "r");
