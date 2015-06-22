@@ -120,3 +120,14 @@ void print_postorder_tree (struct node* currentNode) {
         printf("%i\n", currentNode->data);
     }
 };
+
+int has_path_sum (int sum, struct node* currentNode) {
+    int subSum = 0;
+    if (currentNode == NULL) {
+        return sum == 0;
+    }
+    else {
+        subSum = sum - currentNode->data;
+        return (has_path_sum(subSum, currentNode->left) || has_path_sum(subSum, currentNode->right));
+    }
+}

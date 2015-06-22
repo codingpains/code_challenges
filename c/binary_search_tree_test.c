@@ -15,6 +15,7 @@ int main(void)
     char delimiter[2] = "=";
     char insertCmd[7] = "insert";
     char lookupCmd[7] = "lookup";
+    char hasSumCmd[7] = "hasSum";
     size_t length = 0;
     size_t read;
     struct node* root  = NULL;
@@ -55,7 +56,17 @@ int main(void)
             else {
                 printf("Found this dude %i\n", found->data);
             }
-        } else {
+        } 
+        else if (strcmp(cmd, hasSumCmd) == 0) {
+            printf("Command: hasSum; Value: %i\n", val);
+            if (has_path_sum(val, root) == 1) {
+                printf("It does have path with sum %i\n", val);
+            }
+            else {
+                printf("Nope! no path with sum %i\n", val);
+            }
+        }
+        else {
             printf("Bad Command\n");
         }
     }

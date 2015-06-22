@@ -28,4 +28,6 @@ void print_tree(struct node*, char[2]);
 
 void print_postorder_tree (struct node*);
 
+int has_path_sum (int, struct node*);
+
 #endif
