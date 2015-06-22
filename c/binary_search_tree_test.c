@@ -7,10 +7,10 @@ const int MAX = 128;
 
 int main(void)
 {
-    FILE * file;
+    FILE* file;
     char file_name[MAX];
-    char * line = NULL;
-    char * cmd;
+    char* line = NULL;
+    char* cmd;
     int    val;
     char delimiter[2] = "=";
     char insertCmd[7] = "insert";
@@ -19,6 +19,7 @@ int main(void)
     size_t read;
     struct node* root  = NULL;
     struct node* found = malloc(sizeof(Node));
+    int maxDepth = 0;
 
     printf("Provide input file: ");
     
@@ -59,7 +60,16 @@ int main(void)
         }
     }
 
-    printf("The tree size is %i\n", size_of_tree(root));
+    max_depth_of_tree(&maxDepth, root, 0);
+    printf("The MAX DEPTH of this tree is %i\n", maxDepth);
+    printf("The tree SIZE is %i\n", size_of_tree(root));
+    printf("The tree MIN value is %i\n", min_value_of_tree(root));
+    printf("The tree MAX value is %i\n", max_value_of_tree(root));
+    printf("Printing the complete tree\n");
+    print_tree(root, "r");
+    printf("Printing the tree bottom-up\n");
+    print_postorder_tree(root);
+
     free(line);
     fclose(file);
     exit(0);

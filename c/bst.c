@@ -41,20 +41,16 @@ struct node* insert_node (int data, struct node* currentNode) {
 struct node* lookup (int data, struct node* currentNode) {
     printf("Looking for %i\n", data);
     if (currentNode == NULL) {
-        printf("Current node is already null %i, can not be found\n", data);
         return NULL;
     }
     else if (currentNode->data == data) {
-        printf("Found %i\n", currentNode->data);
         return currentNode;
     }
     else {
         if (data <= currentNode->data) {
-            printf("%i is smaller than current node (%i) so go left\n", data, currentNode->data);
             return lookup(data, currentNode->left);
         }
         else {
-            printf("%i is bigger than current node (%i) so go right\n", data, currentNode->data);
             return lookup(data, currentNode->right);
         }
     }
@@ -78,11 +74,49 @@ int size_of_tree (struct node* currentNode) {
     return count;
 };
 
-int max_depth_of_tree (int** maxDepth, struct node* currentNode, int currentDepth) {
-    if (currentNode == NULL && **maxDepth < currentDepth) {
-        **maxDepth = currentDepth;
+void max_depth_of_tree (int* maxDepth, struct node* currentNode, int currentDepth) {
+    if (currentNode == NULL) {
+        if (*maxDepth < currentDepth) {
+            *maxDepth = currentDepth;
+        }
     }
     else {
         currentDepth++;
+        max_depth_of_tree(maxDepth, currentNode->left, currentDepth);
+        max_depth_of_tree(maxDepth, currentNode->right, currentDepth);
+    }
+};
+
+int min_value_of_tree (struct node* currentNode) {
+    if (currentNode->left == NULL) {
+        return currentNode->data;
+    }
+    else {
+        return min_value_of_tree(currentNode->left);
+    }
+};
+
+int max_value_of_tree (struct node* currentNode) {
+    if (currentNode->right == NULL) {
+        return currentNode->data;
+    }
+    else {
+        return max_value_of_tree(currentNode->right);
+    }
+};
+
+void print_tree (struct node* currentNode, char* prefix) {
+    if (currentNode != NULL) {
+        printf("%s %i\n", prefix, currentNode->data);
+        print_tree(currentNode->left, "/");
+        print_tree(currentNode->right, "\\");
+    }
+};
+
+void print_postorder_tree (struct node* currentNode) {
+    if (currentNode != NULL) {
+        print_postorder_tree(currentNode->left);
+        print_postorder_tree(currentNode->right);
+        printf("%i\n", currentNode->data);
     }
 };
