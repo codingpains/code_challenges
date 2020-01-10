@@ -57,6 +57,25 @@ class BinaryTree {
     output.push(node.value);
     return output;
   }
+
+  isBalanced() {
+    return this.checkHeight(this.root) !== -1;
+  }
+
+  checkHeight(node) {
+    let leftHeight, rightHeight, diff;
+    if (!node) return 0;
+
+    leftHeight = this.checkHeight(node.left);
+    if (leftHeight === -1) return -1;
+
+    rightHeight = this.checkHeight(node.right);
+    if (rightHeight === -1) return -1;
+
+    diff = leftHeight - rightHeight;
+    if (Math.abs(diff) > 1) return -1;
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
 
 module.exports = BinaryTree;
