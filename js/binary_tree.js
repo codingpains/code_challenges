@@ -1,3 +1,5 @@
+const Queue = require('./queue');
+
 class TreeNode {
   constructor(value) {
     this.left = null;
@@ -75,6 +77,28 @@ class BinaryTree {
     diff = leftHeight - rightHeight;
     if (Math.abs(diff) > 1) return -1;
     return Math.max(leftHeight, rightHeight) + 1;
+  }
+
+  isBinarySearchTree() {
+    const queue = new Queue();
+    queue.enqueue(this.root);
+
+    while (queue.size > 0) {
+      const currentNode = queue.dequeue();
+      const { left, right, value } = currentNode;
+
+      if (left) {
+        if (left.value >= value) return false;
+        if (left.left || left.right) queue.enqueue(left);
+      }
+
+      if (right) {
+        if (right.value < value) return false;
+        if (right.left || right.right) queue.enqueue(right);
+      }
+    }
+
+    return true;
   }
 }
 

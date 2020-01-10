@@ -96,4 +96,39 @@ describe('BinaryTree', () => {
       expect(subject.isBalanced()).to.be.false;
     });
   });
+
+  describe('isBinarySearchTree', () => {
+    it('should respond to isBinarySearchTree', () => {
+      const subject = new BinaryTree({});
+      expect(subject).to.respondTo('isBinarySearchTree');
+    });
+
+    it('should return true if binary search tree', () => {
+      const treeInput = {
+        value: 6,
+        left: {
+          value: 5,
+          left: { value: 2 },
+          right: { value: 5 },
+        },
+        right: { value: 9 },
+      };
+      const subject = new BinaryTree(treeInput);
+      expect(subject.isBinarySearchTree()).to.be.true;
+    });
+
+    it('should return false if binary search tree', () => {
+      const treeInput = {
+        value: 6,
+        left: {
+          value: 5,
+          left: { value: 2 },
+          right: { value: 1 },
+        },
+        right: { value: 9 },
+      };
+      const subject = new BinaryTree(treeInput);
+      expect(subject.isBinarySearchTree()).to.be.false;
+    });
+  });
 });
