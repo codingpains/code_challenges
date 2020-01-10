@@ -103,7 +103,6 @@ class BinaryTree {
 
   buildBinarySearchTree(input) {
     this.root = this.createBinaryTreeFromArray(input);
-    console.log(this.root)
   }
 
   createBinaryTreeFromArray(input) {
