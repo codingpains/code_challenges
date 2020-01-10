@@ -131,4 +131,25 @@ describe('BinaryTree', () => {
       expect(subject.isBinarySearchTree()).to.be.false;
     });
   });
+
+  describe('buildBinarySearchTree', () => {
+    it('should respond to buildBinarySearchTree', () => {
+        const subject = new BinaryTree({});
+        expect(subject).to.respondTo('buildBinarySearchTree');
+    });
+
+    it('should build binary search tree', () => {
+      const input = [1,2,3,4,5,6,7,8,9,10];
+      const subject = new BinaryTree({});
+      subject.buildBinarySearchTree(input);
+      expect(subject.inorder()).to.eql(input);
+    });
+
+    it('should build binary search tree', () => {
+      const input = [0,2,3,4,6,7,9,11,12,15,17,18,19,20,21,30];
+      const subject = new BinaryTree({});
+      subject.buildBinarySearchTree(input);
+      expect(subject.inorder()).to.eql(input);
+    });
+  });
 });

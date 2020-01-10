@@ -100,6 +100,25 @@ class BinaryTree {
 
     return true;
   }
+
+  buildBinarySearchTree(input) {
+    this.root = this.createBinaryTreeFromArray(input);
+    console.log(this.root)
+  }
+
+  createBinaryTreeFromArray(input) {
+    const half = Math.max(Math.floor(input.length / 2) - 1, 0);
+    const node = new TreeNode(input[half]);
+    const leftSubarray = input.filter(i => i < input[half]);
+    const rightSubarray = input.filter(i => i > input[half]);
+    if (leftSubarray.length){
+      node.left = this.createBinaryTreeFromArray(leftSubarray);
+    }
+    if (rightSubarray.length) {
+      node.right = this.createBinaryTreeFromArray(rightSubarray);
+    }
+    return node;
+  }
 }
 
 module.exports = BinaryTree;
