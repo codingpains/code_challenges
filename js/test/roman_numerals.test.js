@@ -59,6 +59,7 @@ describe('romanNumerals', () => {
     {num: 97, res: 'XCVII'}, {num: 1991, res: 'MCMXCI'}, {num: 2099, res: 'MMXCIX'},
     {num: 1917, res: 'MCMXVII'}, {num: 1888, res: 'MDCCCLXXXVIII'}, {num: 1514, res: 'MDXIV'},
     {num: 1096, res: 'MXCVI'}, {num: 1066, res: 'MLXVI'}, {num: 885, res: 'DCCCLXXXV'},
+    {num: 34680, res: 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMDCLXXX'},
     ].forEach(({num, res}) => {
       it(`should return ${res} when given ${num}`, () => {
         expect(romanNumerals(num)).to.equal(res);
